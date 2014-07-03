@@ -18,6 +18,9 @@ $stack = (new Stack\Builder())
             'success_url' => $app['url_generator']->generate('homepage'),
             'failure_url'  => '/auth',
             'oauth_service.class' => 'OAuth\OAuth2\Service\GitHub',
+            'service_scopes' => [
+                'read:org',
+            ],
         ]
     )
 ;

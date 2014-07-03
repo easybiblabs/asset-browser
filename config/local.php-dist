@@ -12,3 +12,4 @@ $app['aws.s3.bucket'] = getenv('S3_BROWSER_BUCKET');
 $app['github.key'] = '';
 $app['github.secret'] = '';
 $app['github.callback'] = 'http://127.0.0.1:8080/auth/verify';
+$app['github.orgs'] = ['my-organization']; // -> https://github.com/my-organization

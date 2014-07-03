@@ -49,7 +49,24 @@ $app->before(
             return new HttpFoundation\RedirectResponse('/auth');
         }
 
-        // FIXME: validate org :-)
+        $userOrgs = $request->getSession()->get('orgs');
+        if (null === $userOrgs) {
+            $accessToken = $token->getAccessToken();
+            $client = new GuzzleHttp\Client();
+            $response = $client->get('https://api.github.com/user/orgs?access_token=' . $accessToken);
+            $githubOrgs = json_decode($response->getBody()->__toString(), true);
+
+            $userOrgs = [];
+            foreach ($githubOrgs as $userOrg) {
+                $userOrgs[] = $userOrg['login'];
+            }
+
+            $request->getSession()->set('orgs', $userOrgs);
+        }
+
+        if (empty(array_intersect($app['github.orgs'], $userOrgs))) {
+            throw new \RuntimeException("No access!");
+        }
     }
 )
 ;
