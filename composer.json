@@ -1,0 +1,37 @@
+{
+    "name": "easybib/asset-browser",
+    "description": "A simple yet (hopefully) modern directory browser for Amazon S3.",
+    "license": "BSD-2-Clause",
+    "authors": [
+        {
+            "name": "till",
+            "email": "till@php.net"
+        }
+    ],
+    "repositories": [
+        {
+            "url": "https://github.com/easybiblabs/stack-oauth",
+            "type": "vcs"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-0": {
+            "ImagineEasy\\Collection": "src/",
+            "ImagineEasy\\Controller": "src/",
+            "ImagineEasy\\Service": "src/"
+        }
+    },
+    "require": {
+        "aws/aws-sdk-php-silex": "*",
+        "igorw/stack-oauth": "dev-t/oauth2",
+        "monolog/monolog": ">=1.0.0",
+        "stack/builder": "*",
+        "stack/session": "1.0.*@dev",
+        "twig/twig": "*"
+    },
+    "require-dev": {
+        "silex/web-profiler": "~1.0",
+        "symfony/console": "*"
+    }
+}

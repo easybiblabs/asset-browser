@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="page-header">
+    <h1>
+        {% for nav_entry in nav %}
+            <a href="{{ path('browse') }}?folder={{ nav_entry.folder }}">{{ nav_entry.name }}</a> &raquo;
+        {% endfor %}
+    </h1>
+</div>
+<div class="row">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Object</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for object in objects %}
+        <tr>
+        {% if object.directory %}
+            <td><a href="{{ path('browse') }}?folder={{ object.name }}">{{ object.name }}</a></td>
+            <td><a class="btn btn-danger btn-xs" href="{{ path('delete') }}?folder={{ object.name }}">Delete</a></td>
+        {% else %}
+            <td><a href="javascript:void(0);" data-id="show-btn" data-name="{{ object.name }}">{{ object.name }}</a></td>
+            <td><a class="btn btn-danger btn-xs" href="{{ path('delete') }}?file={{ object.name }}">Delete</a></td>
+        {% endif %}
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<div class="modal fade" role="dialog" data-id="show-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">URL</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Open file <span class="label label-warning">Valid for 15 minutes</span>: <a data-id="url" href="" target="_blank"></a>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script>
+$('[data-id="show-btn"]').on(
+    'click touchstart',
+    function () {
+        $.getJSON(
+            "{{ path('show')}}?file=" + $(this).data('name'),
+            function(data) {
+                $("[data-id=url]").attr('href', data);
+                $("[data-id=url]").html(data.substring(0, 100) + "&hellip;");
+                $("[data-id=show-modal]").modal('show');
+            }
+        )
+    }
+);
+</script>
+{% endblock %}
