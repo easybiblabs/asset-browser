@@ -54,7 +54,7 @@ $app->before(
             $accessToken = $token->getAccessToken();
             $client = new GuzzleHttp\Client();
             $response = $client->get('https://api.github.com/user/orgs?access_token=' . $accessToken);
-            $githubOrgs = json_decode($response->getBody()->__toString(), true);
+            $githubOrgs = $response->json();
 
             $userOrgs = [];
             foreach ($githubOrgs as $userOrg) {
