@@ -17,9 +17,7 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-0": {
-            "ImagineEasy\\Collection": "src/",
-            "ImagineEasy\\Controller": "src/",
-            "ImagineEasy\\Service": "src/"
+            "ImagineEasy": "src/"
         }
     },
     "require": {
