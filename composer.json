@@ -21,7 +21,7 @@
         }
     },
     "require": {
-        "aws/aws-sdk-php-silex": "*",
+        "aws/aws-sdk-php": "~2.6.10",
         "easybib/stack-github-org-auth": "~0.2.0",
         "igorw/stack-oauth": "dev-t/oauth2",
         "monolog/monolog": ">=1.0.0",
