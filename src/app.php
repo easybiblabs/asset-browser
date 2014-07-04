@@ -23,6 +23,10 @@ $app['twig'] = $app->share($app->extend('twig', function ($twig, $app) {
                 $travis = 'https://magnum.travis-ci.com/%s/%s';
                 $link = '<a class="btn-xs btn %s" href="%s">%s</a>';
 
+                if (false === strpos($path, 'travis-ci')) {
+                    return '';
+                }
+
                 if (substr($path, -1) == '/') {
                     $path = substr($path, 0, -1);
                 }
