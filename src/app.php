@@ -14,8 +14,45 @@ $app->register(new Provider\ServiceControllerServiceProvider());
 
 $app->register(new Provider\TwigServiceProvider());
 $app['twig'] = $app->share($app->extend('twig', function ($twig, $app) {
-    // add custom globals, filters, tags, ...
+    $twig->addFunction(
+        new Twig_SimpleFunction(
+            'dev_shortcuts',
+            function ($path) {
 
+                $github = 'https://github.com/%s/%s/pull/%d';
+                $travis = 'https://magnum.travis-ci.com/%s/%s';
+                $link = '<a class="btn-xs btn %s" href="%s">%s</a>';
+
+                if (substr($path, -1) == '/') {
+                    $path = substr($path, 0, -1);
+                }
+                $matches = explode('/', $path);
+
+                if (count($matches) < 4) {
+                    return '';
+                }
+
+                $response = sprintf(
+                    $link,
+                    'btn-info',
+                    sprintf($github, $matches[0], $matches[1], $matches[3]),
+                    'GitHub PR'
+                );
+
+                if (count($matches) == 5) {
+                    $response .= '&nbsp;';
+                    $response .= sprintf(
+                        $link,
+                        'btn-warning',
+                        sprintf($travis, $matches[0], $matches[1]),
+                        'Travis-CI'
+                    );
+                }
+
+                return $response;
+            }
+        )
+    );
     return $twig;
 }));
 

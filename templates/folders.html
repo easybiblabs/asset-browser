@@ -22,10 +22,15 @@
         <tr>
         {% if object.directory %}
             <td><a href="{{ path('browse') }}?folder={{ object.name }}">{{ object.name }}</a></td>
-            <td><a class="btn btn-danger btn-xs" href="{{ path('delete') }}?folder={{ object.name }}">Delete</a></td>
+            <td>
+                {{ dev_shortcuts(object.name)|raw }}
+                <a class="btn btn-danger btn-xs" href="{{ path('delete') }}?folder={{ object.name }}">Delete</a>
+            </td>
         {% else %}
             <td><a href="javascript:void(0);" data-id="show-btn" data-name="{{ object.name }}">{{ object.name }}</a></td>
-            <td><a class="btn btn-danger btn-xs" href="{{ path('delete') }}?file={{ object.name }}">Delete</a></td>
+            <td>
+                <a class="btn btn-danger btn-xs" href="{{ path('delete') }}?file={{ object.name }}">Delete</a>
+            </td>
         {% endif %}
         </tr>
         {% endfor %}
