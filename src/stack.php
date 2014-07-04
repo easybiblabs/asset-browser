@@ -23,6 +23,12 @@ $stack = (new Stack\Builder())
             ],
         ]
     )
+    ->push(
+        'ImagineEasy\Stack\GitHubOrgAuth',
+        [
+            'organizations' => $app['github.orgs'],
+        ]
+    )
 ;
 
 $app = $stack->resolve($app);
