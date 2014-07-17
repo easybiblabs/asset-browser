@@ -25,6 +25,7 @@
         "easybib/stack-github-org-auth": "~0.2.0",
         "igorw/stack-oauth": "dev-t/oauth2",
         "monolog/monolog": ">=1.0.0",
+        "silex/silex": "1.2.1",
         "stack/session": "1.0.*@dev",
         "twig/twig": "*"
     },
