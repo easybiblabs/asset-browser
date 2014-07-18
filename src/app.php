@@ -60,7 +60,12 @@ $app['twig'] = $app->share($app->extend('twig', function ($twig, $app) {
     return $twig;
 }));
 
-require dirname(__DIR__) . '/config/local.php';
+if (file_exists(dirname(__DIR__) . '/config/local.php')) {
+    require dirname(__DIR__) . '/config/local.php';
+} else {
+    // attempt to use defaults
+    require dirname(__DIR__) . '/config/local.php-dist';
+}
 
 $app['aws.s3'] = $app->share(
     function () use ($app) {
