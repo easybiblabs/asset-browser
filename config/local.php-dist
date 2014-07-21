@@ -3,17 +3,17 @@
 
 $deployConfigFile = dirname(__DIR__) . '/.deploy_configuration.php';
 if (file_exists($deployConfigFile)) {
-    require $deployConfigFileFile;
+    $deployConfig = require $deployConfigFileFile;
 
     // FIXME
-    putenv("AWS_ACCESS_KEY_ID='" . $deploy_config['settings']['AWS_ACCESS-KEY'] . "'");
-    putenv("AWS_SECRET_ACCESS_KEY='" . $deploy_config['settings']['AWS_SECRET-KEY'] . "'");
+    putenv("AWS_ACCESS_KEY_ID='" . $deployConfig['settings']['AWS_ACCESS-KEY'] . "'");
+    putenv("AWS_SECRET_ACCESS_KEY='" . $deployConfig['settings']['AWS_SECRET-KEY'] . "'");
 
-    $app['aws.s3.bucket'] = $deploy_config['settings']['AWS_BUCKET-NAME'];
-    $app['github.key'] = $deploy_config['settings']['GITHUB_KEY'];
-    $app['github.secret'] = $deploy_config['settings']['GITHUB_SECRET'];
-    $app['github.callback'] = $deploy_config['settings']['GITHUB_CALLBACK'];
-    $app['github.orgs'] = explode(',',$deploy_config['settings']['GITHUB_ORGS']);
+    $app['aws.s3.bucket'] = $deployConfig['settings']['AWS_BUCKET-NAME'];
+    $app['github.key'] = $deployConfig['settings']['GITHUB_KEY'];
+    $app['github.secret'] = $deployConfig['settings']['GITHUB_SECRET'];
+    $app['github.callback'] = $deployConfig['settings']['GITHUB_CALLBACK'];
+    $app['github.orgs'] = explode(',', $deployConfig['settings']['GITHUB_ORGS']);
 
     return;
 }
