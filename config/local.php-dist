@@ -1,4 +1,23 @@
 <?php
+// This is specific to Imagine Easy's deployment setup:
+
+$deployConfigFile = dirname(__DIR__) . '/.deploy_configuration.php';
+if (file_exists($deployConfigFile)) {
+    $deployConfig = require $deployConfigFileFile;
+
+    // FIXME
+    putenv("AWS_ACCESS_KEY_ID='" . $deployConfig['settings']['AWS_ACCESS-KEY'] . "'");
+    putenv("AWS_SECRET_ACCESS_KEY='" . $deployConfig['settings']['AWS_SECRET-KEY'] . "'");
+
+    $app['aws.s3.bucket'] = $deployConfig['settings']['AWS_BUCKET-NAME'];
+    $app['github.key'] = $deployConfig['settings']['GITHUB_KEY'];
+    $app['github.secret'] = $deployConfig['settings']['GITHUB_SECRET'];
+    $app['github.callback'] = $deployConfig['settings']['GITHUB_CALLBACK'];
+    $app['github.orgs'] = explode(',', $deployConfig['settings']['GITHUB_ORGS']);
+
+    return;
+}
+
 
 $envConfiguration = ['AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY', 'S3_BROWSER_BUCKET'];
 foreach ($envConfiguration as $envKey) {
