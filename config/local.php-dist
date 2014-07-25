@@ -3,7 +3,7 @@
 
 $deployConfigFile = dirname(__DIR__) . '/.deploy_configuration.php';
 if (file_exists($deployConfigFile)) {
-    $deployConfig = require $deployConfigFileFile;
+    $deployConfig = require $deployConfigFile;
 
     // FIXME
     putenv("AWS_ACCESS_KEY_ID='" . $deployConfig['settings']['AWS_ACCESS-KEY'] . "'");
