@@ -6,8 +6,8 @@ if (file_exists($deployConfigFile)) {
     $deployConfig = require $deployConfigFile;
 
     // FIXME
-    putenv("AWS_ACCESS_KEY_ID='" . $deployConfig['settings']['AWS_ACCESS-KEY'] . "'");
-    putenv("AWS_SECRET_ACCESS_KEY='" . $deployConfig['settings']['AWS_SECRET-KEY'] . "'");
+    putenv("AWS_ACCESS_KEY_ID=" . $deployConfig['settings']['AWS_ACCESS-KEY']);
+    putenv("AWS_SECRET_ACCESS_KEY=" . $deployConfig['settings']['AWS_SECRET-KEY']);
 
     $app['aws.s3.bucket'] = $deployConfig['settings']['AWS_BUCKET-NAME'];
     $app['github.key'] = $deployConfig['settings']['GITHUB_KEY'];

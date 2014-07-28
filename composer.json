@@ -27,6 +27,7 @@
         "monolog/monolog": ">=1.0.0",
         "silex/silex": "1.2.1",
         "stack/session": "1.0.*@dev",
+        "symfony/twig-bridge": "*",
         "twig/twig": "*"
     },
     "require-dev": {
