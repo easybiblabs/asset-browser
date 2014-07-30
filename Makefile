@@ -1,7 +1,7 @@
 test:
 ifndef TRAVIS_PHP_VERSION
 	make phpunit
-else ifeq ($(TRAVIS_PHP_VERSION), php)
+else ifeq ($(TRAVIS_PHP_VERSION), 5.5)
 	make phpunit
 else ifeq ($(TRAVIS_PHP_VERSION), hhvm)
 	make analyze
