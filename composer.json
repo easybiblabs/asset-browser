@@ -1,7 +1,7 @@
 {
     "name": "easybib/asset-browser",
     "description": "A simple yet (hopefully) modern directory browser for Amazon S3.",
-    "license": "BSD-2-Clause",
+    "license": "Apache-2.0",
     "authors": [
         {
             "name": "till",
